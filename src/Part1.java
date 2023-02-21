@@ -3,12 +3,12 @@ import com.sun.deploy.util.ArrayUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class Part1 {
-    public String part1Exe(String path){
-        Integer minSpreadDay=0;
+    public String part1Exe(String path) throws IOException {
 
         try(BufferedReader weatherFile= Files.newBufferedReader(Paths.get(path));){
             String data;
@@ -17,18 +17,17 @@ public class Part1 {
                 if(data.isEmpty()==true){
                     data="空行です";
                 }
-
                 List<String> splitDataList=splitDataToList(data);
                 tempSpreadMap=calcDataToMap(splitDataList,tempSpreadMap);
 
             }
-            minSpreadDay=Collections.min(tempSpreadMap.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-            String ans="温度差の最も小さい日付は"+String.valueOf(minSpreadDay)+"日です。";
+            Integer minSpreadDay=minSpreadDaySelect(tempSpreadMap);
+            String ans="温度差の最も小さい日付は"+minSpreadDay+"日です。";
             return ans;
-        }catch(IOException e){
+        } catch(IOException e){
             e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
     public List<String> splitDataToList(String data){
@@ -52,5 +51,10 @@ public class Part1 {
             tempSpreadMap.put(day,spread);
         }
         return tempSpreadMap;
+    }
+
+    public Integer minSpreadDaySelect(Map<Integer,Integer> tempSpreadMap){
+        Integer minSpreadDay=Collections.min(tempSpreadMap.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
+        return minSpreadDay;
     }
 }
