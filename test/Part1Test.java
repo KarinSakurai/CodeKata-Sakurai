@@ -25,13 +25,13 @@ public class Part1Test {
     @Test(expected= IOException.class)
     public void ファイルの読み込みテスト＿エラー() throws Exception{
         String path="src/sampleFile/weatherFalse.dat";
-        targetPart1.part1Exe(path);
+        targetPart1.fileReadExe(path);
     }
 
     @Test
     public void ファイルの読み込みテスト＿成功() throws Exception{
         String path="src/sampleFile/weather.dat";
-        String result=targetPart1.part1Exe(path);
+        String result=targetPart1.fileReadExe(path);
         String expected="温度差の最も小さい日付は14日です。";
         assertEquals(expected,result);
     }
@@ -46,7 +46,7 @@ public class Part1Test {
     }
     @Test
     public void 温度差計算テスト＿数値なし() throws Exception{
-        Map<Integer,Integer> tempSpreadMap=new HashMap<>();
+        Map<String,Integer> tempSpreadMap=new HashMap<>();
         List<String> splitDataList=new ArrayList<>();
         splitDataList.add("aaa");
         splitDataList.add("bbb");
@@ -58,13 +58,13 @@ public class Part1Test {
 
     @Test
     public void 温度差計算テスト＿数値あり() throws Exception{
-        Map<Integer,Integer> tempSpreadMap=new HashMap<>();
+        Map<String,Integer> tempSpreadMap=new HashMap<>();
         List<String> splitDataList=new ArrayList<>();
         splitDataList.add("1");
         splitDataList.add("35");
         splitDataList.add("10");
         tempSpreadMap=targetPart1.calcDataToMap(splitDataList,tempSpreadMap);
-        int result=tempSpreadMap.get(1);
+        int result=tempSpreadMap.get("1");
 
         assertEquals(25,result);
         assertEquals(1,tempSpreadMap.size());
@@ -72,12 +72,12 @@ public class Part1Test {
 
     @Test
     public void 最小温度差の取り出しテスト() throws Exception{
-        Map<Integer,Integer> tempSpreadMap=new HashMap<>();
-        tempSpreadMap.put(1,25);
-        tempSpreadMap.put(2,10);
-        tempSpreadMap.put(3,50);
-        Integer result=targetPart1.minSpreadDaySelect(tempSpreadMap);
+        Map<String,Integer> tempSpreadMap=new HashMap<>();
+        tempSpreadMap.put("1",25);
+        tempSpreadMap.put("2",10);
+        tempSpreadMap.put("3",50);
+        String result=targetPart1.minDataSelect(tempSpreadMap);
 
-        assertEquals(Integer.valueOf(2),result);
+        assertEquals("2",result);
     }
 }

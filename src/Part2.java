@@ -6,9 +6,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Part2 {
+public class Part2 extends AbstractClass{
 
-    public String part2Exe(String path) throws IOException{
+    public String fileReadExe(String path) throws IOException{
         try(BufferedReader footBallFile= Files.newBufferedReader(Paths.get(path));){
             String data;
             Map<String,Integer> scoreDiffMap=new HashMap<>();
@@ -17,7 +17,7 @@ public class Part2 {
                 List<String> splitDataList=splitDataToList(data);
                 scoreDiffMap=calcDataToMap(splitDataList, scoreDiffMap);
             }
-            String group=minDiffTeamSelect(scoreDiffMap);
+            String group= minDataSelect(scoreDiffMap);
             String ans="点数差が一番小さいチームは"+group+"です。";
             return ans;
 
@@ -27,13 +27,7 @@ public class Part2 {
         }
     }
 
-    public List<String> splitDataToList(String data){
-        String[] splitData=data.split(" ");
-        List<String> splitDataList=new ArrayList<>(Arrays.asList(splitData));
-        splitDataList.removeIf(object -> object.isEmpty());
-        return splitDataList;
-    }
-
+    @Override
     public Map<String,Integer> calcDataToMap(List<String> splitDataList,Map<String,Integer> scoreDiffMap){
         String num="([0-9]+)(\\.)?";
         Pattern pattern=Pattern.compile(num);
@@ -48,12 +42,4 @@ public class Part2 {
         }
         return scoreDiffMap;
     }
-
-    public String minDiffTeamSelect(Map<String,Integer> scoreDiffMap){
-        String minDiffTeam=Collections.min(
-                scoreDiffMap.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-        return minDiffTeam;
-    }
-
 }
-
