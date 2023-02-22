@@ -26,13 +26,13 @@ public class Part2Test {
     @Test(expected = IOException.class)
     public void ファイルの読み込み＿エラー() throws Exception{
         String path="src/sampleFile/footballFalse.dat";
-        targetPart2.part2Exe(path);
+        targetPart2.fileReadExe(path);
     }
 
     @Test
     public void ファイルの読み込み＿成功() throws Exception{
         String path="src/sampleFile/football.dat";
-        String result=targetPart2.part2Exe(path);
+        String result=targetPart2.fileReadExe(path);
         String excepted="点数差が一番小さいチームはAston_Villaです。";
 
         assertEquals(excepted,result);
@@ -84,7 +84,7 @@ public class Part2Test {
         scoreDiffMap.put("テストチーム１",10);
         scoreDiffMap.put("テストチーム２",20);
         scoreDiffMap.put("テストチーム３",30);
-        String result=targetPart2.minDiffTeamSelect(scoreDiffMap);
+        String result=targetPart2.minDataSelect(scoreDiffMap);
 
         assertEquals("テストチーム１",result);
     }
