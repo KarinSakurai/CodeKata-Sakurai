@@ -40,7 +40,7 @@ public class Part1 {
 
     public Map<Integer,Integer> calcDataToMap(List<String> splitDataList,Map<Integer,Integer> tempSpreadMap){
         boolean isNumeric= splitDataList.get(0).chars().allMatch(Character::isDigit);
-        if(isNumeric==true){
+        if(isNumeric){
             String strMax=splitDataList.get(1).replace("*","");
             String strMin=splitDataList.get(2).replace("*","");
 
