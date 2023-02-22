@@ -24,7 +24,7 @@ public class Part1Test {
 
     @Test(expected= IOException.class)
     public void ファイルの読み込みテスト＿エラー() throws Exception{
-        String path="src/sampleFile/weatheraaa.dat";
+        String path="src/sampleFile/weatherFalse.dat";
         targetPart1.part1Exe(path);
     }
 
@@ -33,7 +33,6 @@ public class Part1Test {
         String path="src/sampleFile/weather.dat";
         String result=targetPart1.part1Exe(path);
         String expected="温度差の最も小さい日付は14日です。";
-
         assertEquals(expected,result);
     }
     @Test
