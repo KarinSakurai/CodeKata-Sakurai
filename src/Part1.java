@@ -17,12 +17,10 @@ public class Part1 extends AbstractClass {
             Map<String, Integer> tempSpreadMap = new HashMap<>();
 
             while ((data = weatherFile.readLine()) != null) {
-                if (data.isEmpty()) {
-                    data = "空行です";
+                if (!data.isEmpty()) {
+                    List<String> splitDataList = splitDataToList(data);
+                    tempSpreadMap = calcDataToMap(splitDataList, tempSpreadMap);
                 }
-                List<String> splitDataList = splitDataToList(data);
-                tempSpreadMap = calcDataToMap(splitDataList, tempSpreadMap);
-
             }
             String minSpreadDay = minDataSelect(tempSpreadMap);
 
@@ -62,5 +60,4 @@ public class Part1 extends AbstractClass {
 
         return answer.get("day") + " " + answer.get("max") + " " + answer.get("min");
     }
-
 }
