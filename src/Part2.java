@@ -17,8 +17,7 @@ public class Part2 extends AbstractClass {
                 List<String> splitDataList = splitDataToList(data);
                 scoreDiffMap = calcDataToMap(splitDataList, scoreDiffMap);
             }
-            String group = minDataSelect(scoreDiffMap);
-            String ans = "点数差が一番小さいチームは" + group + "です。";
+            String ans = minDataSelect(scoreDiffMap);
             return ans;
 
         } catch (IOException e) {
