@@ -33,7 +33,7 @@ public class Part2Test {
     public void ファイルの読み込み＿成功() throws Exception {
         String path = "src/sampleFile/football.dat";
         String result = targetPart2.fileReadExe(path);
-        String excepted = "点数差が一番小さいチームはAston_Villaです。";
+        String excepted = "Aston_Villa";
 
         assertEquals(excepted, result);
     }

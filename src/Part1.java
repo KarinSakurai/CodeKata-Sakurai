@@ -57,7 +57,7 @@ public class Part1 extends AbstractClass {
 
     public String ansConversion(String minSpreadDay, List<Map<String, Object>> mapInList) {
         Map<String, Object> answer = mapInList.stream()
-                .filter(a -> (minSpreadDay.equals(a.get("day"))))
+                .filter(map -> (minSpreadDay.equals(map.get("day"))))
                 .findAny().get();
 
         return answer.get("day") + " " + answer.get("max") + " " + answer.get("min");
