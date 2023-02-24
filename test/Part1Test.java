@@ -32,7 +32,7 @@ public class Part1Test {
     public void ファイルの読み込みテスト＿成功() throws Exception {
         String path = "src/sampleFile/weather.dat";
         String result = targetPart1.fileReadExe(path);
-        String expected = "温度差の最も小さい日付は14日です。";
+        String expected = "14 61 59";
         assertEquals(expected, result);
     }
 
@@ -81,5 +81,24 @@ public class Part1Test {
         String result = targetPart1.minDataSelect(tempSpreadMap);
 
         assertEquals("2", result);
+    }
+
+    @Test
+    public void 最小温度差から答え出力テスト() throws Exception {
+        String minSpreadDay = "1";
+        List<Map<String, Object>> mapInList = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("day", "1");
+        map.put("max", 30);
+        map.put("min", 20);
+        mapInList.add(map);
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("day", "2");
+        map2.put("max", 40);
+        map2.put("min", 20);
+        mapInList.add(map2);
+
+        String result = targetPart1.ansConversion(minSpreadDay, mapInList);
+        assertEquals("1 30 20", result);
     }
 }

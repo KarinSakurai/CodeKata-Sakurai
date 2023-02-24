@@ -26,11 +26,7 @@ public class Part1 extends AbstractClass {
             }
             String minSpreadDay = minDataSelect(tempSpreadMap);
 
-            Map<String, Object> answer = mapInList.stream()
-                    .filter(a -> (minSpreadDay.equals(a.get("day"))))
-                    .findAny().get();
-
-            String ans = answer.get("day") + " " + answer.get("max") + " " + answer.get("min");
+            String ans = ansConversion(minSpreadDay, mapInList);
             return ans;
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,6 +53,14 @@ public class Part1 extends AbstractClass {
             mapInList.add(map);
         }
         return tempSpreadMap;
+    }
+
+    public String ansConversion(String minSpreadDay, List<Map<String, Object>> mapInList) {
+        Map<String, Object> answer = mapInList.stream()
+                .filter(a -> (minSpreadDay.equals(a.get("day"))))
+                .findAny().get();
+
+        return answer.get("day") + " " + answer.get("max") + " " + answer.get("min");
     }
 
 }
