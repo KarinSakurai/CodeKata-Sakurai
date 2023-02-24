@@ -1,11 +1,8 @@
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Part1 extends AbstractClass {
     List<Map<String, Object>> mapInList = new ArrayList<>();
@@ -16,13 +13,12 @@ public class Part1 extends AbstractClass {
             String data;
             Map<String, Integer> tempSpreadMap = new HashMap<>();
 
+            List<String> splitDataList = null;
             while ((data = weatherFile.readLine()) != null) {
-                if (data.isEmpty()) {
-                    data = "空行です";
+                if (!data.isEmpty()) {
+                    splitDataList = splitDataToList(data);
+                    tempSpreadMap = calcDataToMap(splitDataList, tempSpreadMap);
                 }
-                List<String> splitDataList = splitDataToList(data);
-                tempSpreadMap = calcDataToMap(splitDataList, tempSpreadMap);
-
             }
             String minSpreadDay = minDataSelect(tempSpreadMap);
 
